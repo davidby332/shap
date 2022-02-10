@@ -63,6 +63,10 @@ def beeswarm(shap_values, max_display=10, order=Explanation.abs.mean(0),
         feature_names = shap_exp.feature_names
         # if out_names is None: # TODO: waiting for slicer support
         #     out_names = shap_exp.output_names
+        
+    for i in feature_map:
+
+        feature_names[feature_names.index(i)] = feature_map[i]
 
     order = convert_ordering(order, values)
     
@@ -271,7 +275,7 @@ def beeswarm(shap_values, max_display=10, order=Explanation.abs.mean(0),
         values[:,feature_order[num_features-1]] = np.sum([values[:,feature_order[i]] for i in range(num_features-1, len(values[0]))], 0)
     
     # build our y-tick labels
-    yticklabels = [feature_map[i] for i in feature_inds]
+    yticklabels = [feature_names[i] for i in feature_inds]
     if num_features < len(values[0]):
         yticklabels[-1] = "Sum of %d other features" % num_cut
     
