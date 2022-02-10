@@ -23,7 +23,7 @@ from .. import Explanation
 def beeswarm(shap_values, max_display=10, order=Explanation.abs.mean(0),
              clustering=None, cluster_threshold=0.5, color=None,
              axis_color="#333333", alpha=1, show=True, log_scale=False,
-             color_bar=True, plot_size="auto", color_bar_label=labels["FEATURE_VALUE"]):
+             color_bar=True, plot_size="auto", color_bar_label=labels["FEATURE_VALUE"], feature_map = dict()):
     """Create a SHAP beeswarm plot, colored by feature values when they are provided.
 
     Parameters
@@ -271,7 +271,7 @@ def beeswarm(shap_values, max_display=10, order=Explanation.abs.mean(0),
         values[:,feature_order[num_features-1]] = np.sum([values[:,feature_order[i]] for i in range(num_features-1, len(values[0]))], 0)
     
     # build our y-tick labels
-    yticklabels = [feature_names[i] for i in feature_inds]
+    yticklabels = [feature_map[i] for i in feature_inds]
     if num_features < len(values[0]):
         yticklabels[-1] = "Sum of %d other features" % num_cut
     
