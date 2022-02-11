@@ -366,7 +366,7 @@ def beeswarm(shap_values, max_display=10, order=Explanation.abs.mean(0),
         m = cm.ScalarMappable(cmap=color)
         m.set_array([0, 1])
         # cb = pl.colorbar(m, ticks=[0, 1], aspect=10000)
-        cb = pl.colorbar(m)
+        cb = pl.colorbar(m, ticks=[0, 1])
         cb.set_ticklabels([labels['FEATURE_VALUE_LOW'], labels['FEATURE_VALUE_HIGH']])
         cb.set_label(color_bar_label, size=12, labelpad=0)
         cb.ax.tick_params(labelsize=11, length=0)
