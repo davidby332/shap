@@ -63,10 +63,10 @@ def beeswarm(shap_values, max_display=10, order=Explanation.abs.mean(0),
         feature_names = shap_exp.feature_names
         # if out_names is None: # TODO: waiting for slicer support
         #     out_names = shap_exp.output_names
-        
-    for i in feature_map:
 
-        feature_names[feature_names.index(i)] = feature_map[i]
+    if bool(feature_map) == True:
+        for i in feature_map:
+            feature_names[feature_names.index(i)] = feature_map[i]
 
     order = convert_ordering(order, values)
     
@@ -179,7 +179,7 @@ def beeswarm(shap_values, max_display=10, order=Explanation.abs.mean(0),
         slow = -v
         shigh = v
 
-        pl.figure(figsize=(1.5 * max_display + 1, 0.8 * max_display + 1))
+        pl.figure(figsize=(1.5 * max_display + 1, 0.8 * max_display + 1), dpi = 1200)
         pl.subplot(1, max_display, 1)
         proj_values = values[:, interaction_sort_inds[0], interaction_sort_inds]
         proj_values[:, 1:] *= 2  # because off diag effects are split in half
