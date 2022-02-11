@@ -549,8 +549,8 @@ def dependence_legacy(ind, shap_values=None, features=None, feature_names=None, 
         feature_names = [labels['FEATURE'] % str(i) for i in range(shap_values.shape[1])]
 
     if bool(feature_map) == True:
-        for i in feature_map:
-            feature_names[feature_names.index(i)] = feature_map[i]
+        for i in display_features:
+            display_features[display_features.index(i)] = feature_map[i]
 
     # allow vectors to be passed
     if len(shap_values.shape) == 1:
