@@ -214,8 +214,8 @@ def beeswarm(shap_values, max_display=10, order=Explanation.abs.mean(0),
             if i == min(len(interaction_sort_inds), max_display) // 2:
                 pl.xlabel(labels['INTERACTION_VALUE'])
             pl.title(shorten_text(feature_names[ind], title_length_limit))
-        pl.tight_layout(pad=0, w_pad=0, h_pad=0.0)
-        pl.subplots_adjust(hspace=0, wspace=0.1)
+        # pl.tight_layout(pad=0, w_pad=0, h_pad=0.0)
+        # pl.subplots_adjust(hspace=0, wspace=0.1)
         if show:
             pl.show()
         return
