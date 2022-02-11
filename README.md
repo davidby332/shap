@@ -15,7 +15,7 @@
 
 
 
-## Install
+## Instal
 
 SHAP can be installed from either [PyPI](https://pypi.org/project/shap) or [conda-forge](https://anaconda.org/conda-forge/shap):
 
