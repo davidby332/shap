@@ -23,7 +23,8 @@ from .. import Explanation
 def beeswarm(shap_values, max_display=10, order=Explanation.abs.mean(0),
              clustering=None, cluster_threshold=0.5, color=None,
              axis_color="#333333", alpha=1, show=True, log_scale=False,
-             color_bar=True, plot_size="auto", color_bar_label=labels["FEATURE_VALUE"], feature_map = dict()):
+             color_bar=True, plot_size="auto", color_bar_label=labels["FEATURE_VALUE"], 
+             feature_map = dict(), plot_title = ''):
     """Create a SHAP beeswarm plot, colored by feature values when they are provided.
 
     Parameters
@@ -387,6 +388,8 @@ def beeswarm(shap_values, max_display=10, order=Explanation.abs.mean(0),
     pl.gca().tick_params('x', labelsize=11)
     pl.ylim(-1, len(feature_inds))
     pl.xlabel(labels['VALUE'], fontsize=13)
+    if plot_title != '':
+        pl.title(plot_title)
     if show:
         pl.show()
 
