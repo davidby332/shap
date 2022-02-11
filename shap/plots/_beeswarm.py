@@ -24,7 +24,7 @@ def beeswarm(shap_values, max_display=10, order=Explanation.abs.mean(0),
              clustering=None, cluster_threshold=0.5, color=None,
              axis_color="#333333", alpha=1, show=True, log_scale=False,
              color_bar=True, plot_size="auto", color_bar_label=labels["FEATURE_VALUE"], 
-             feature_map = dict(), plot_title = ''):
+             feature_map = dict(), plot_title_dict = dict()):
     """Create a SHAP beeswarm plot, colored by feature values when they are provided.
 
     Parameters
@@ -180,7 +180,7 @@ def beeswarm(shap_values, max_display=10, order=Explanation.abs.mean(0),
         slow = -v
         shigh = v
 
-        pl.figure(figsize=(4.0 * max_display + 1, 0.8 * max_display + 1))
+        pl.figure(figsize=(1.5 * max_display + 1, 0.8 * max_display + 1))
         pl.subplot(1, max_display, 1)
         proj_values = values[:, interaction_sort_inds[0], interaction_sort_inds]
         proj_values[:, 1:] *= 2  # because off diag effects are split in half
@@ -388,8 +388,8 @@ def beeswarm(shap_values, max_display=10, order=Explanation.abs.mean(0),
     pl.gca().tick_params('x', labelsize=11)
     pl.ylim(-1, len(feature_inds))
     pl.xlabel(labels['VALUE'], fontsize=13)
-    if plot_title != '':
-        pl.title(plot_title)
+    if bool(plot_title_dict):
+        pl.title(plot_title_dict['title'], fontsize = plot_title_dict['fontsize'])
     if show:
         pl.show()
 
@@ -588,7 +588,7 @@ def summary_legacy(shap_values, features=None, feature_names=None, max_display=N
             if i == min(len(sort_inds), max_display) // 2:
                 pl.xlabel(labels['INTERACTION_VALUE'])
             pl.title(shorten_text(feature_names[ind], title_length_limit))
-        pl.tight_layout(pad=0, w_pad=0, h_pad=0.0)
+        # pl.tight_layout(pad=0, w_pad=0, h_pad=0.0)
         pl.subplots_adjust(hspace=0, wspace=0.1)
         if show:
             pl.show()
