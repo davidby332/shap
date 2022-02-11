@@ -468,7 +468,8 @@ def scatter(shap_values, color="#1E88E5", hist=True, axis_color="#333333", cmap=
 def dependence_legacy(ind, shap_values=None, features=None, feature_names=None, display_features=None,
                       interaction_index="auto",
                       color="#1E88E5", axis_color="#333333", cmap=None,
-                      dot_size=16, x_jitter=0, alpha=1, title=None, xmin=None, xmax=None, ax=None, show=True):
+                      dot_size=16, x_jitter=0, alpha=1, title=None, xmin=None, xmax=None, ax=None, show=True,
+                      feature_map = dict()):
     """ Create a SHAP dependence plot, colored by an interaction feature.
 
     Plots the value of the feature on the x-axis and the SHAP value of the same feature
@@ -546,6 +547,10 @@ def dependence_legacy(ind, shap_values=None, features=None, feature_names=None, 
 
     if feature_names is None:
         feature_names = [labels['FEATURE'] % str(i) for i in range(shap_values.shape[1])]
+
+    if bool(feature_map) == True:
+        for i in feature_map:
+            feature_names[feature_names.index(i)] = feature_map[i]
 
     # allow vectors to be passed
     if len(shap_values.shape) == 1:
