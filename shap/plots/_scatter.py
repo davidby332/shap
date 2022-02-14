@@ -621,7 +621,11 @@ def dependence_legacy(ind, shap_values=None, features=None, feature_names=None, 
     # allow a single feature name to be passed alone
     if type(feature_names) == str:
         feature_names = [feature_names]
+
     name = feature_names[ind]
+
+    print (name)
+    print (feature_names)
 
     if bool(feature_map) == True:
         name = feature_map[ind]
@@ -703,7 +707,7 @@ def dependence_legacy(ind, shap_values=None, features=None, feature_names=None, 
             cb.set_label(feature_map[feature_names[interaction_index]], size=13)
         else:
             cb.set_label(feature_names[interaction_index], size=13)
-            
+
         cb.ax.tick_params(labelsize=11)
         if categorical_interaction:
             cb.ax.tick_params(length=0)
