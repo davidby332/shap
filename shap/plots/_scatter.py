@@ -625,7 +625,7 @@ def dependence_legacy(ind, shap_values=None, features=None, feature_names=None, 
     name = feature_names[ind]
 
     print (name)
-    print (feature_names)
+    print (feature_names[ind])
 
     if bool(feature_map) == True:
         name = feature_map[ind]
