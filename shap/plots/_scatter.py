@@ -548,10 +548,6 @@ def dependence_legacy(ind, shap_values=None, features=None, feature_names=None, 
     if feature_names is None:
         feature_names = [labels['FEATURE'] % str(i) for i in range(shap_values.shape[1])]
 
-    if bool(feature_map) == True:
-        for i in display_features:
-            display_features[display_features.index(i)] = feature_map[i]
-
     # allow vectors to be passed
     if len(shap_values.shape) == 1:
         shap_values = np.reshape(shap_values, len(shap_values), 1)
@@ -627,6 +623,9 @@ def dependence_legacy(ind, shap_values=None, features=None, feature_names=None, 
         feature_names = [feature_names]
     name = feature_names[ind]
 
+    if bool(feature_map) == True:
+        name = feature_map[ind]
+
     # get both the raw and display color values
     color_norm = None
     if interaction_index is not None:
@@ -700,7 +699,11 @@ def dependence_legacy(ind, shap_values=None, features=None, feature_names=None, 
         else:
             cb = pl.colorbar(p, ax=ax)
 
-        cb.set_label(feature_names[interaction_index], size=13)
+        if bool(feature_map) == True:
+            cb.set_label(feature_map[feature_names[interaction_index]], size=13)
+        else:
+            cb.set_label(feature_names[interaction_index], size=13)
+            
         cb.ax.tick_params(labelsize=11)
         if categorical_interaction:
             cb.ax.tick_params(length=0)
